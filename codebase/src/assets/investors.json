@@ -476,32 +476,6 @@
   ]
 },
 {
-  "name": "Sean Bill",
-  "type": "person",
-  "hqCountry": "United States",
-  "numInvestments": 1,
-  "totalInvested": 60800000,
-  "_id": "621575165954445b3f91c7d7",
-  "investments": [
-    {
-      "entity": "623e29efaf98316e81e4b1f2",
-      "date": 1584403200000,
-      "entityName": "Amount",
-      "round": "Series B",
-      "roundCurrency": "USD",
-      "roundSize": 58000000,
-      "roundSizeUsd": 58000000
-    }
-  ],
-  "solutionSegments": [
-    {
-      "_id": "5fc17fe1f82a3e5e2cabd39a",
-      "name": "Credit and Financial Identity"
-    }
-  ],
-  "marketSegments": null
-},
-{
   "name": "Matt Kavian",
   "type": "person",
   "numInvestments": 1,
@@ -6320,8 +6294,8 @@
 {
   "name": "Michael Schweitzer",
   "type": "person",
-  "numInvestments": 1,
-  "totalInvested": 520000,
+  "numInvestments": 4,
+  "totalInvested": 4605000,
   "_id": "622a4444651a22194e3d059a",
   "investments": [
     {
@@ -6332,6 +6306,33 @@
       "roundCurrency": "USD",
       "roundSize": 520000,
       "roundSizeUsd": 520000
+    },
+    {
+      "entity": "622a443e651a22194e3d0573",
+      "date": 1420070400000,
+      "entityName": "kompany",
+      "round": "Seed",
+      "roundCurrency": "USD",
+      "roundSize": 585000,
+      "roundSizeUsd": 585000
+    },
+    {
+      "entity": "622a443e651a22194e3d0573",
+      "date": 1340755200000,
+      "entityName": "kompany",
+      "round": "Seed",
+      "roundCurrency": "USD",
+      "roundSize": 1000000,
+      "roundSizeUsd": 1000000
+    },
+    {
+      "entity": "622a443e651a22194e3d0573",
+      "date": 1395964800000,
+      "entityName": "kompany",
+      "round": "Angel",
+      "roundCurrency": "USD",
+      "roundSize": 2500000,
+      "roundSizeUsd": 2500000
     }
   ],
   "solutionSegments": [
@@ -6380,75 +6381,6 @@
     }
   ],
   "marketSegments": []
-},
-{
-  "name": "Michael Schweitzer",
-  "type": "person",
-  "numInvestments": 1,
-  "totalInvested": 585000,
-  "_id": "622a4442651a22194e3d058e",
-  "investments": [
-    {
-      "entity": "622a443e651a22194e3d0573",
-      "date": 1420070400000,
-      "entityName": "kompany",
-      "round": "Seed",
-      "roundCurrency": "USD",
-      "roundSize": 585000,
-      "roundSizeUsd": 585000
-    }
-  ],
-  "solutionSegments": [
-    {
-      "_id": "617337382f5b80fadc54bd87",
-      "name": "Business & Entity Verification"
-    }
-  ],
-  "marketSegments": [
-    {
-      "_id": "617337382f5b80fadc54bd87",
-      "name": "Business & Entity Verification"
-    }
-  ]
-},
-{
-  "name": "Michael Schweitzer",
-  "type": "person",
-  "numInvestments": 2,
-  "totalInvested": 3500000,
-  "_id": "622a443f651a22194e3d057c",
-  "investments": [
-    {
-      "entity": "622a443e651a22194e3d0573",
-      "date": 1340755200000,
-      "entityName": "kompany",
-      "round": "Seed",
-      "roundCurrency": "USD",
-      "roundSize": 1000000,
-      "roundSizeUsd": 1000000
-    },
-    {
-      "entity": "622a443e651a22194e3d0573",
-      "date": 1395964800000,
-      "entityName": "kompany",
-      "round": "Angel",
-      "roundCurrency": "USD",
-      "roundSize": 2500000,
-      "roundSizeUsd": 2500000
-    }
-  ],
-  "solutionSegments": [
-    {
-      "_id": "617337382f5b80fadc54bd87",
-      "name": "Business & Entity Verification"
-    }
-  ],
-  "marketSegments": [
-    {
-      "_id": "617337382f5b80fadc54bd87",
-      "name": "Business & Entity Verification"
-    }
-  ]
 },
 {
   "name": "Kaiser Permanente",

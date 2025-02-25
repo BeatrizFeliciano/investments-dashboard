@@ -1,25 +1,25 @@
 // getters for the entity
-const getEntityID = (entity) => entity._id;
-const getEntityName = (entity) => entity.name;
-const getEntityType = (entity) => entity.type;
-const getEntityHqCountry = (entity) => entity.hqCountry;
-const getTotalInvested = (entity) => entity.totalInvested;
-const getNumInvestments = (entity) => entity.numInvestments;
-const getInvestmentsList = (entity) => entity.investments;
-const getSolutionSegments = (entity) => entity.solutionSegments;
-const getMarketSegments = (entity) => entity.marketSegments;
+export const getEntityID = (entity) => entity._id;
+export const getEntityName = (entity) => entity.name;
+export const getEntityType = (entity) => entity.type;
+export const getEntityHqCountry = (entity) => entity.hqCountry;
+export const getTotalInvested = (entity) => entity.totalInvested;
+export const getNumInvestments = (entity) => entity.numInvestments;
+export const getInvestmentsList = (entity) => entity.investments;
+export const getSolutionSegments = (entity) => entity.solutionSegments;
+export const getMarketSegments = (entity) => entity.marketSegments;
 
 // getters for the investments
-const getInvestmentEntityID = (investment) => investment.entity;
-const getInvestmentEntityName = (investment) => investment.entityName;
-const getInvestmentDate = (investment) => investment.date;
-const getInvestmentRound = (investment) => investment.round;
-const getInvestmentAmount = (investment) => investment.roundSizeUsd; // will only consider USD
+export const getInvestmentEntityID = (investment) => investment.entity;
+export const getInvestmentEntityName = (investment) => investment.entityName;
+export const getInvestmentDate = (investment) => investment.date;
+export const getInvestmentRound = (investment) => investment.round;
+export const getInvestmentAmount = (investment) => investment.roundSizeUsd; // will only consider USD
 
 // getters for the solution segments
-const getSolutionSegmentName = (solutionSegment) => solutionSegment.name;
-const getSolutionSegmentID = (solutionSegment) => solutionSegment._id;
+export const getSolutionSegmentName = (solutionSegment) => solutionSegment.name;
+export const getSolutionSegmentID = (solutionSegment) => solutionSegment._id;
 
 // getters for the market segments
-const getMarketSegmentName = (marketSegment) => marketSegment.name;
-const getMarketSegmentID = (marketSegment) => marketSegment._id;
+export const getMarketSegmentName = (marketSegment) => marketSegment.name;
+export const getMarketSegmentID = (marketSegment) => marketSegment._id;
