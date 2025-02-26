@@ -8,6 +8,7 @@ export const getNumInvestments = (entity) => entity.numInvestments;
 export const getInvestmentsList = (entity) => entity.investments;
 export const getSolutionSegments = (entity) => entity.solutionSegments;
 export const getMarketSegments = (entity) => entity.marketSegments;
+export const isEntity = (entity) => getEntityType(entity) === 'entity';
 
 // getters for the investments
 export const getInvestmentEntityID = (investment) => investment.entity;

@@ -1,0 +1,1 @@
+export const BOX_SHADOW = 3;
