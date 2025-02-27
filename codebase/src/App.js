@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <Header data={data} setSelectedEntity={setSelectedEntity} />
-      <InsightsArea selectedEntity={selectedEntity}/>
+      {selectedEntity && <InsightsArea selectedEntity={selectedEntity}/>}
     </div>
   );
 }

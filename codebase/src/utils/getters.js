@@ -3,11 +3,11 @@ export const getEntityID = (entity) => entity._id;
 export const getEntityName = (entity) => entity.name;
 export const getEntityType = (entity) => entity.type;
 export const getEntityHqCountry = (entity) => entity.hqCountry;
-export const getTotalInvested = (entity) => entity.totalInvested;
-export const getNumInvestments = (entity) => entity.numInvestments;
-export const getInvestmentsList = (entity) => entity.investments;
-export const getSolutionSegments = (entity) => entity.solutionSegments;
-export const getMarketSegments = (entity) => entity.marketSegments;
+export const getEntityTotalInvested = (entity) => entity.totalInvested;
+export const getEntityNumInvestments = (entity) => entity.numInvestments;
+export const getEntityInvestmentsList = (entity) => entity.investments;
+export const getEntitySolutionSegments = (entity) => entity.solutionSegments;
+export const getEntityMarketSegments = (entity) => entity.marketSegments;
 export const isEntity = (entity) => getEntityType(entity) === 'entity';
 
 // getters for the investments

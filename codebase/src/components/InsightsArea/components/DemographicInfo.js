@@ -5,7 +5,7 @@ import { getEntityHqCountry, getEntityName, isEntity } from "../../../utils/gett
 function DemographicInfo({ selectedEntity }) {
     return (
         <div className="demographic-info">
-            <Typography className="demographic-info">
+            <Typography>
                 {getEntityName(selectedEntity)}
                 {isEntity(selectedEntity) ? `, ${getEntityHqCountry(selectedEntity)}` : ""}
             </Typography>
