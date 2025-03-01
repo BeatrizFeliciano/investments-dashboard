@@ -17,10 +17,10 @@ function InvestedEntitiesBubbleChart({investedEntities, setHighlightEntity, high
             <ParentSize style={{width: "100%", height: 500}}>
                 {({ width, height }) => {
                 const radiusScale = d3.scaleSqrt()
-                .domain([
-                    Math.min(...Object.keys(investedEntities).map(key => investedEntities[key].totalAmount)), 
-                    Math.max(...Object.keys(investedEntities).map(key => investedEntities[key].totalAmount)),
-                ])
+                    .domain([
+                        0, 
+                        Math.max(...Object.keys(investedEntities).map(key => investedEntities[key].totalAmount)),
+                    ])
                 .range([10, width/6]); // Min and Max bubble radius
             
                 // Create the nodes with radius
