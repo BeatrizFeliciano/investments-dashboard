@@ -1,13 +1,13 @@
 import { ParentSize } from "@visx/responsive";
 import { Group } from "@visx/group";
 import { Circle } from "@visx/shape";
-import { blueColor } from "../../../../../constants";
+import { blueColor, blueLightColor } from "../../../../../constants";
 import * as d3 from 'd3';
 import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
 import { numberFormatter } from "../../../../../utils/formatters";
 import "../../../InsightsArea.css";
 
-function InvestedEntitiesBubbleChart({investedEntities, setHighlightEntity}) {
+function InvestedEntitiesBubbleChart({investedEntities, setHighlightEntity, highlightRound}) {
 
     const { showTooltip, hideTooltip, tooltipData, tooltipLeft, tooltipTop, tooltipOpen } = useTooltip();
 
@@ -24,9 +24,10 @@ function InvestedEntitiesBubbleChart({investedEntities, setHighlightEntity}) {
             
                 // Create the nodes with radius
                 const initialNodes = Object.keys(investedEntities).map(key => ({
-                ...investedEntities[key],
-                name: key,
-                radius: radiusScale(investedEntities[key].totalAmount),
+                    ...investedEntities[key],
+                    name: key,
+                    rounds: investedEntities[key].rounds,
+                    radius: radiusScale(investedEntities[key].totalAmount),
                 }));
             
                 // Create Force Simulation
@@ -42,38 +43,51 @@ function InvestedEntitiesBubbleChart({investedEntities, setHighlightEntity}) {
                     <svg width={width} height={height}>
                     <Group>
                         {initialNodes.map((d, i) => (
-                        <Circle
-                            key={i}
-                            cx={d.x}
-                            cy={d.y}
-                            r={d.radius}
-                            fill={blueColor}
-                            onMouseEnter={(e) => {
-                                showTooltip({
-                                    tooltipData: { 
-                                        name: d.name, 
-                                        totalAmount: d.totalAmount, 
-                                    },
-                                    tooltipLeft: e.clientX,
-                                    tooltipTop: e.clientY,
-                                });
-                                setHighlightEntity(d.name);
-                            }}
-                            onMouseLeave={() => {
-                                hideTooltip();
-                                setHighlightEntity();
-                            }}
-                            onMouseMove={(e) => {
-                                showTooltip({
-                                    tooltipData: { 
-                                        name: d.name, 
-                                        totalAmount: d.totalAmount, 
-                                    },
-                                    tooltipLeft: e.clientX,
-                                    tooltipTop: e.clientY,
-                                });
-                            }}
-                        />
+                            <>
+                            <Circle
+                                key={i}
+                                cx={d.x}
+                                cy={d.y}
+                                r={d.radius}
+                                fill={highlightRound ? blueLightColor : blueColor}
+                                onMouseEnter={(e) => {
+                                    showTooltip({
+                                        tooltipData: { 
+                                            name: d.name, 
+                                            totalAmount: d.totalAmount, 
+                                        },
+                                        tooltipLeft: e.clientX,
+                                        tooltipTop: e.clientY,
+                                    });
+                                    setHighlightEntity(d.name);
+                                }}
+                                onMouseLeave={() => {
+                                    hideTooltip();
+                                    setHighlightEntity();
+                                }}
+                                onMouseMove={(e) => {
+                                    showTooltip({
+                                        tooltipData: { 
+                                            name: d.name, 
+                                            totalAmount: d.totalAmount, 
+                                        },
+                                        tooltipLeft: e.clientX,
+                                        tooltipTop: e.clientY,
+                                    });
+                                }}
+                            />
+                            {/* highlight circles according to hover on bar chart  */}
+                            {highlightRound && d.rounds.has(highlightRound) && (
+                                <Circle
+                                    key={`highlight-${i}`}
+                                    cx={d.x}
+                                    cy={d.y}
+                                    r={d.radius}
+                                    fill={blueColor}
+                                />
+                            )}
+                            
+                            </>
                         ))}
                     </Group>
                     </svg>

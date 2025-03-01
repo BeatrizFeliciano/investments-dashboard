@@ -9,7 +9,7 @@ import { blueColor, blueLightColor } from "../../../../../constants";
 import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
 import "../../../InsightsArea.css";
 
-function InvestmentRoundsBarChart({investmentRounds, highlightEntity, highlightedInvestmentRounds}) {
+function InvestmentRoundsBarChart({investmentRounds, highlightEntity, highlightedInvestmentRounds, setHighlightRound}) {
 
     const { showTooltip, hideTooltip, tooltipData, tooltipLeft, tooltipTop, tooltipOpen } = useTooltip();
 
@@ -81,8 +81,12 @@ function InvestmentRoundsBarChart({investmentRounds, highlightEntity, highlighte
                                                     tooltipLeft: e.clientX,
                                                     tooltipTop: e.clientY,
                                                 });
+                                                setHighlightRound(round);
                                             }}
-                                            onMouseLeave={() => hideTooltip()}
+                                            onMouseLeave={() => {
+                                                hideTooltip();
+                                                setHighlightRound();
+                                            }}
                                             onMouseMove={(e) => {
                                                 showTooltip({
                                                     tooltipData: { round, totalAmount, dates },

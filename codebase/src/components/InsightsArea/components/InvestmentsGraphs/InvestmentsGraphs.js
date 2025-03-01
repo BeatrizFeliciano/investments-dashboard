@@ -14,8 +14,13 @@ function InvestmentsGraphs({selectedEntity}) {
     const [highlightEntity, setHighlightEntity] = useState();
 
     const [highlightedInvestmentRounds, setHighlightedInvestmentRounds] = useState({});
+    const [highlightedInvestedEntities, setHighlightedInvestedEntities] = useState({});
 
-    console.log(highlightedInvestmentRounds);
+    console.log(investedEntities);
+    console.log(highlightRound);
+
+    // highlightRound: string with name of the round
+    // investedEntities: {} -> map() {name: {investments:[], totalAmount: N}}
 
 
 
@@ -54,7 +59,7 @@ function InvestmentsGraphs({selectedEntity}) {
                         ...investedEntities,
                         [getInvestmentEntityName(investment)]: {
                             totalAmount: currentEntity.totalAmount + getInvestmentAmount(investment),
-                            investments: [...currentEntity.investments, investment]
+                            rounds: currentEntity.rounds.add(getInvestmentRound(investment))
                         }
                     });
     
@@ -62,7 +67,7 @@ function InvestmentsGraphs({selectedEntity}) {
                     ...investedEntities,
                     [getInvestmentEntityName(investment)]: {
                         totalAmount: getInvestmentAmount(investment),
-                        investments: [investment]
+                        rounds: new Set([getInvestmentRound(investment)])
                     }
                 });
             });
@@ -99,7 +104,9 @@ function InvestmentsGraphs({selectedEntity}) {
             })
         });
 
-    }, [highlightedInvestmentRounds]);
+    }, [investmentsList, highlightEntity]);
+
+
 
     return (
         <div style={{ display:"flex", flexDirection:"row", gap:20 }}>
@@ -107,8 +114,13 @@ function InvestmentsGraphs({selectedEntity}) {
                 investmentRounds={investmentRounds} 
                 highlightEntity={highlightEntity}
                 highlightedInvestmentRounds={highlightedInvestmentRounds}
+                setHighlightRound={setHighlightRound}
             />
-            <InvestedEntitiesBubbleChart investedEntities={investedEntities} setHighlightEntity={setHighlightEntity}/>
+            <InvestedEntitiesBubbleChart 
+                investedEntities={investedEntities} 
+                setHighlightEntity={setHighlightEntity}
+                highlightRound={highlightRound}
+            />
         </div>
     );
 }
