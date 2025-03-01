@@ -9,8 +9,15 @@ import SegmentTable from "./components/SegmentTable";
 
 
 function InsightsArea({ selectedEntity }) {  
-    const marketSegments = useMemo(() => new Set(getEntityMarketSegments(selectedEntity).map(getMarketSegmentName)), [selectedEntity]);
-    const solutionSegments = useMemo(() => new Set(getEntitySolutionSegments(selectedEntity).map(getSolutionSegmentName)), [selectedEntity]);
+    const marketSegments = useMemo(() => {
+        const segments = getEntityMarketSegments(selectedEntity);
+        return segments ? new Set(segments.map(getMarketSegmentName)) : new Set();
+      }, [selectedEntity]);
+
+    const solutionSegments = useMemo(() => {
+        const segments = getEntitySolutionSegments(selectedEntity);
+        return segments ? new Set(segments.map(getSolutionSegmentName)) : new Set();
+      }, [selectedEntity]);
     
     return (
         <div className="insights-area-wrapper">
