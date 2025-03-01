@@ -13,6 +13,7 @@
     padding: 15px;
     box-sizing: border-box; /* to account for the padding */
     display: flex;
+    gap: 25px;
     flex-direction: row;
 }
 
@@ -43,4 +44,34 @@
     background-color: white;
     border-radius: 5px;
     padding: 10px;
+}
+
+.investment-areas-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.investment-areas {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 5px;
+    /* padding: 10px; */
+    height: 100%;
+}
+
+.investment-areas-title {
+    background-color: rgb(65, 152, 215, 0.1);
+    padding: 5px;
+    padding-left: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.investment-areas-list {
+    padding: 5px;
+    padding-left: 10px;
 }
