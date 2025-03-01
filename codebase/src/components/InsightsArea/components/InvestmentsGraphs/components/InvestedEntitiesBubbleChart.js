@@ -2,8 +2,9 @@ import { ParentSize } from "@visx/responsive";
 import { Group } from "@visx/group";
 import { Circle } from "@visx/shape";
 import { blueColor } from "../../../../../constants";
-import { useTooltip } from '@visx/tooltip';
 import * as d3 from 'd3';
+import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
+import { numberFormatter } from "../../../../../utils/formatters";
 import "../../../InsightsArea.css";
 
 function InvestedEntitiesBubbleChart({investedEntities}) {
@@ -20,10 +21,13 @@ function InvestedEntitiesBubbleChart({investedEntities}) {
                     Math.max(...Object.keys(investedEntities).map(key => investedEntities[key].totalAmount)),
                 ])
                 .range([10, width/6]); // Min and Max bubble radius
+
+                console.log(investedEntities);
             
                 // Create the nodes with radius
                 const initialNodes = Object.keys(investedEntities).map(key => ({
                 ...investedEntities[key],
+                name: key,
                 radius: radiusScale(investedEntities[key].totalAmount),
                 }));
             
@@ -46,6 +50,27 @@ function InvestedEntitiesBubbleChart({investedEntities}) {
                             cy={d.y}
                             r={d.radius}
                             fill={blueColor}
+                            onMouseEnter={(e) => {
+                                showTooltip({
+                                    tooltipData: { 
+                                        name: d.name, 
+                                        totalAmount: d.totalAmount, 
+                                    },
+                                    tooltipLeft: e.clientX,
+                                    tooltipTop: e.clientY,
+                                });
+                            }}
+                            onMouseLeave={() => hideTooltip()}
+                            onMouseMove={(e) => {
+                                showTooltip({
+                                    tooltipData: { 
+                                        name: d.name, 
+                                        totalAmount: d.totalAmount, 
+                                    },
+                                    tooltipLeft: e.clientX,
+                                    tooltipTop: e.clientY,
+                                });
+                            }}
                         />
                         ))}
                     </Group>
@@ -53,6 +78,18 @@ function InvestedEntitiesBubbleChart({investedEntities}) {
                 );
                 }}
             </ParentSize>
+            {tooltipOpen && (
+                <TooltipWithBounds
+                    top={tooltipTop}
+                    left={tooltipLeft}
+                    style={{ backgroundColor: 'white', padding: '10px', border: '1px solid #ccc', position:"absolute" }}
+                >
+                    <div>
+                        <strong>{tooltipData.name}</strong>
+                        <div>{numberFormatter(tooltipData.totalAmount)} USD</div>
+                    </div>
+                </TooltipWithBounds>
+            )}
         </div>
     );
 }
