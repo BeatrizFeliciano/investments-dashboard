@@ -4,13 +4,13 @@ import InformationCard from "./components/InformationCard";
 import { numberFormatter } from "../../utils/formatters";
 import "./InsightsArea.css";
 import InvestmentsGraphs from "./components/InvestmentsGraphs/InvestmentsGraphs";
-import { Box, Grid, Typography } from "@mui/material";
-import { blueColor, BOX_SHADOW } from "../../constants";
+import { useMemo } from "react";
+import SegmentTable from "./components/SegmentTable";
 
 
 function InsightsArea({ selectedEntity }) {  
-    const marketSegments = getEntityMarketSegments(selectedEntity);   
-    const solutionSegments = getEntitySolutionSegments(selectedEntity);    
+    const marketSegments = useMemo(() => getEntityMarketSegments(selectedEntity), [selectedEntity]);
+    const solutionSegments = useMemo(() => getEntitySolutionSegments(selectedEntity), [selectedEntity]);      
     
     return (
         <div className="insights-area-wrapper">
@@ -29,44 +29,8 @@ function InsightsArea({ selectedEntity }) {
                     </div>
                 </div>
                 <div className="investment-areas-wrapper">
-                    {marketSegments && <Box 
-                        className="investment-areas"
-                        component={Grid}
-                        direction="column"
-                        container
-                        boxShadow={BOX_SHADOW}
-                    >
-                        <Typography 
-                            className="investment-areas-title" 
-                            color={blueColor} 
-                            fontWeight="bold"
-                            align="left"
-                        >
-                            Market Segments
-                        </Typography>
-                        <Typography 
-                            className="investment-areas-list"
-                            align="left"
-                        >
-                            {getEntityMarketSegments(selectedEntity).map((marketSegment) => (
-                                <div className="area-investment">{getMarketSegmentName(marketSegment)}</div>
-                            ))}
-                        </Typography>
-                    </Box>}
-                    {solutionSegments && <Box 
-                        className="investment-areas"
-                        component={Grid}
-                        direction="column"
-                        container
-                        boxShadow={BOX_SHADOW}
-                    >
-                        <div className="investment-areas-title">Solution Segments</div>
-                        <div className="investment-areas-list">
-                            {solutionSegments.map((solutionSegment) => (
-                                <div className="area-investment">{getSolutionSegmentName(solutionSegment)}</div>
-                            ))}
-                        </div>
-                    </Box>}
+                    <SegmentTable title="Market Segments" segments={marketSegments} segmentNameGetter={getMarketSegmentName}/>
+                    <SegmentTable title="Solution Segments" segments={solutionSegments} segmentNameGetter={getSolutionSegmentName}/>
                 </div>
             </div>
             <InvestmentsGraphs selectedEntity={selectedEntity}/>

@@ -59,8 +59,18 @@
     flex-direction: column;
     background-color: white;
     border-radius: 5px;
-    /* padding: 10px; */
     height: 100%;
+    width: 50%;
+}
+
+.no-investment-areas {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 5px;
+    height: 100%;
+    width: 50%;
+    justify-content: center;
 }
 
 .investment-areas-title {
