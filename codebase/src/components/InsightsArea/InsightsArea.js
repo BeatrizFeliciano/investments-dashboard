@@ -101,6 +101,7 @@ function InsightsArea({ selectedEntity }) {
                         {Object.keys(investmentRounds).map((investmentRoundKey) => {
                             const round = investmentRoundKey;
                             const totalAmount = investmentRounds[investmentRoundKey].totalAmount;
+                            const dates = [...investmentRounds[investmentRoundKey].investments.map((investment)=>investment.date)];
                             const barsMargin = xScale.bandwidth() / 5;
                             const barWidth = xScale.bandwidth() - barsMargin;
                             const barHeight = height - marginTop - marginBottom - yScale(totalAmount);
@@ -120,13 +121,20 @@ function InsightsArea({ selectedEntity }) {
                                             tooltipData: { 
                                                 round, 
                                                 totalAmount, 
-                                                dates: [...investmentRounds[investmentRoundKey].investments.map((investment)=>investment.date)]
+                                                dates
                                             },
                                             tooltipLeft: e.clientX,
                                             tooltipTop: e.clientY,
                                         });
                                     }}
                                     onMouseLeave={() => hideTooltip()}
+                                    onMouseMove={(e) => {
+                                        showTooltip({
+                                            tooltipData: { round, totalAmount, dates },
+                                            tooltipLeft: e.clientX,
+                                            tooltipTop: e.clientY,
+                                        });
+                                    }}
                                 />
                             )
                         })}
