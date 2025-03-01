@@ -5,11 +5,11 @@ import { Group } from "@visx/group";
 import { GridRows } from "@visx/grid";
 import { Bar } from "@visx/shape";
 import { AxisBottom, AxisLeft } from "@visx/axis";
-import { blueColor } from "../../../../../constants";
+import { blueColor, blueLightColor } from "../../../../../constants";
 import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
 import "../../../InsightsArea.css";
 
-function InvestmentRoundsBarChart({investmentRounds}) {
+function InvestmentRoundsBarChart({investmentRounds, highlightEntity, highlightedInvestmentRounds}) {
 
     const { showTooltip, hideTooltip, tooltipData, tooltipLeft, tooltipTop, tooltipOpen } = useTooltip();
 
@@ -70,7 +70,7 @@ function InvestmentRoundsBarChart({investmentRounds}) {
                                             y={barY}
                                             width={barWidth}
                                             height={barHeight}
-                                            fill={blueColor}
+                                            fill={highlightEntity ? blueLightColor : blueColor } 
                                             onMouseEnter={(e) => {
                                                 showTooltip({
                                                     tooltipData: { 
@@ -86,6 +86,45 @@ function InvestmentRoundsBarChart({investmentRounds}) {
                                             onMouseMove={(e) => {
                                                 showTooltip({
                                                     tooltipData: { round, totalAmount, dates },
+                                                    tooltipLeft: e.clientX,
+                                                    tooltipTop: e.clientY,
+                                                });
+                                            }}
+                                        />
+                                    )
+                                })}
+                                {/* Highlight amounts corresponding to hovered entity */}
+                                {highlightEntity && Object.keys(highlightedInvestmentRounds).map((investmentRoundKey) => {
+                                    const round = investmentRoundKey;
+                                    const totalAmount = highlightedInvestmentRounds[investmentRoundKey].totalAmount;
+                                    const barsMargin = xScale.bandwidth() / 5;
+                                    const barWidth = xScale.bandwidth() - barsMargin;
+                                    const barHeight = height - marginTop - marginBottom - yScale(totalAmount);
+                                    const barX = xScale(round) + barsMargin/2;
+                                    const barY = height - marginBottom - marginTop - barHeight;
+
+                                    return (
+                                        <Bar
+                                            key={`bar-${round}`}
+                                            x={barX}
+                                            y={barY}
+                                            width={barWidth}
+                                            height={barHeight}
+                                            fill={blueColor}
+                                            onMouseEnter={(e) => {
+                                                showTooltip({
+                                                    tooltipData: {
+                                                        round,
+                                                        totalAmount,
+                                                    },
+                                                    tooltipLeft: e.clientX,
+                                                    tooltipTop: e.clientY,
+                                                });
+                                            }}
+                                            onMouseLeave={() => hideTooltip()}
+                                            onMouseMove={(e) => {
+                                                showTooltip({
+                                                    tooltipData: { round, totalAmount },
                                                     tooltipLeft: e.clientX,
                                                     tooltipTop: e.clientY,
                                                 });

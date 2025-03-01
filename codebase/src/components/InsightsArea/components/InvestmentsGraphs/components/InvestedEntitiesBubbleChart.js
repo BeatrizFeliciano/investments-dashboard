@@ -7,7 +7,7 @@ import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
 import { numberFormatter } from "../../../../../utils/formatters";
 import "../../../InsightsArea.css";
 
-function InvestedEntitiesBubbleChart({investedEntities}) {
+function InvestedEntitiesBubbleChart({investedEntities, setHighlightEntity}) {
 
     const { showTooltip, hideTooltip, tooltipData, tooltipLeft, tooltipTop, tooltipOpen } = useTooltip();
 
@@ -57,8 +57,12 @@ function InvestedEntitiesBubbleChart({investedEntities}) {
                                     tooltipLeft: e.clientX,
                                     tooltipTop: e.clientY,
                                 });
+                                setHighlightEntity(d.name);
                             }}
-                            onMouseLeave={() => hideTooltip()}
+                            onMouseLeave={() => {
+                                hideTooltip();
+                                setHighlightEntity();
+                            }}
                             onMouseMove={(e) => {
                                 showTooltip({
                                     tooltipData: { 

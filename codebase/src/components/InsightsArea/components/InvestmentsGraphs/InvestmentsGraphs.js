@@ -1,6 +1,5 @@
 import { getEntityInvestmentsList, getInvestmentAmount, getInvestmentEntityName, getInvestmentRound } from "../../../../utils/getters";
 import { useEffect, useMemo, useState } from "react";
-import { useTooltip } from '@visx/tooltip';
 import "../../InsightsArea.css";
 import InvestmentRoundsBarChart from "./components/InvestmentRoundsBarChart";
 import InvestedEntitiesBubbleChart from "./components/InvestedEntitiesBubbleChart";
@@ -10,6 +9,15 @@ function InvestmentsGraphs({selectedEntity}) {
     const investmentsList = useMemo(() => getEntityInvestmentsList(selectedEntity), [selectedEntity]);
     const [investmentRounds, setInvestmentRounds] = useState({});
     const [investedEntities, setInvestedEntities] = useState({});
+
+    const [highlightRound, setHighlightRound] = useState();
+    const [highlightEntity, setHighlightEntity] = useState();
+
+    const [highlightedInvestmentRounds, setHighlightedInvestmentRounds] = useState({});
+
+    console.log(highlightedInvestmentRounds);
+
+
 
     useEffect(() => {
         setInvestedEntities({});
@@ -61,10 +69,46 @@ function InvestmentsGraphs({selectedEntity}) {
         });
     }, investmentsList);
 
+    useEffect(() => {
+        setHighlightedInvestmentRounds({});
+
+        investmentsList.forEach((investment) => {
+            setHighlightedInvestmentRounds((highlightedInvestmentRounds) => {
+                const currentInvestment = highlightedInvestmentRounds[getInvestmentRound(investment)];
+                const currentEntity = getInvestmentEntityName(investment);
+    
+                if (currentEntity === highlightEntity) {
+                    if (currentInvestment)
+                        return ({
+                            ...highlightedInvestmentRounds,
+                            [getInvestmentRound(investment)]: {
+                                totalAmount: currentInvestment.totalAmount + getInvestmentAmount(investment),
+                            }
+                        });
+    
+                    return ({
+                        ...highlightedInvestmentRounds,
+                        [getInvestmentRound(investment)]: {
+                            totalAmount: getInvestmentAmount(investment),
+                        }
+                    });
+                }
+    
+                return highlightedInvestmentRounds;
+    
+            })
+        });
+
+    }, [highlightedInvestmentRounds]);
+
     return (
         <div style={{ display:"flex", flexDirection:"row", gap:20 }}>
-            <InvestmentRoundsBarChart investmentRounds={investmentRounds}/>
-             <InvestedEntitiesBubbleChart investedEntities={investedEntities}/>
+            <InvestmentRoundsBarChart 
+                investmentRounds={investmentRounds} 
+                highlightEntity={highlightEntity}
+                highlightedInvestmentRounds={highlightedInvestmentRounds}
+            />
+            <InvestedEntitiesBubbleChart investedEntities={investedEntities} setHighlightEntity={setHighlightEntity}/>
         </div>
     );
 }
