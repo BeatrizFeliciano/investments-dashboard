@@ -476,6 +476,41 @@
   ]
 },
 {
+  "name": "Sean Bill",
+  "type": "person",
+  "hqCountry": "United States",
+  "numInvestments": 2,
+  "totalInvested": 63600000,
+  "_id": "621575165954445b3f91c7d7",
+  "investments": [
+    {
+      "entity": "623e29efaf98316e81e4b1f2",
+      "date": 1584403200000,
+      "entityName": "Amount",
+      "round": "Series B",
+      "roundCurrency": "USD",
+      "roundSize": 58000000,
+      "roundSizeUsd": 58000000
+    },
+    {
+      "entity": "621575125954445b3f91c7c3",
+      "date": 1555545600000,
+      "entityName": "Chooch AI",
+      "round": "Seed",
+      "roundCurrency": "USD",
+      "roundSize": 2800000,
+      "roundSizeUsd": 2800000
+    }
+  ],
+  "solutionSegments": [
+    {
+      "_id": "5fc17fe1f82a3e5e2cabd39a",
+      "name": "Credit and Financial Identity"
+    }
+  ],
+  "marketSegments": null
+},
+{
   "name": "Matt Kavian",
   "type": "person",
   "numInvestments": 1,
@@ -1018,26 +1053,6 @@
       "name": "Biometrics"
     }
   ],
-  "marketSegments": null
-},
-{
-  "name": "Sean Bill",
-  "type": "person",
-  "numInvestments": 1,
-  "totalInvested": 2800000,
-  "_id": "621575165954445b3f91c7d9",
-  "investments": [
-    {
-      "entity": "621575125954445b3f91c7c3",
-      "date": 1555545600000,
-      "entityName": "Chooch AI",
-      "round": "Seed",
-      "roundCurrency": "USD",
-      "roundSize": 2800000,
-      "roundSizeUsd": 2800000
-    }
-  ],
-  "solutionSegments": [],
   "marketSegments": null
 },
 {
