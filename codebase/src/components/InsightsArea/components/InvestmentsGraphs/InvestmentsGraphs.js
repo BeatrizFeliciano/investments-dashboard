@@ -1,12 +1,17 @@
-import { getEntityInvestmentsList, getInvestmentAmount, getInvestmentEntityName, getInvestmentRound } from "../../../../utils/getters";
+import { getEntityInvestmentsList, getInvestmentAmount, getInvestmentDate, getInvestmentEntityName, getInvestmentRound } from "../../../../utils/getters";
 import { useEffect, useMemo, useState } from "react";
-import "../../InsightsArea.css";
 import InvestmentRoundsBarChart from "./components/InvestmentRoundsBarChart";
 import InvestedEntitiesBubbleChart from "./components/InvestedEntitiesBubbleChart";
+import "../../InsightsArea.css";
 
 function InvestmentsGraphs({selectedEntity}) {
 
-    const investmentsList = useMemo(() => getEntityInvestmentsList(selectedEntity), [selectedEntity]);
+    const investmentsList = useMemo(() => 
+        getEntityInvestmentsList(selectedEntity)
+            .sort((investment1, investment2) => 
+                getInvestmentDate(investment1) - getInvestmentDate(investment2)
+    ), [selectedEntity]);
+    
     const [investmentRounds, setInvestmentRounds] = useState({});
     const [investedEntities, setInvestedEntities] = useState({});
 
@@ -14,14 +19,6 @@ function InvestmentsGraphs({selectedEntity}) {
     const [highlightEntity, setHighlightEntity] = useState();
 
     const [highlightedInvestmentRounds, setHighlightedInvestmentRounds] = useState({});
-    const [highlightedInvestedEntities, setHighlightedInvestedEntities] = useState({});
-
-    console.log(investedEntities);
-    console.log(highlightRound);
-
-    // highlightRound: string with name of the round
-    // investedEntities: {} -> map() {name: {investments:[], totalAmount: N}}
-
 
 
     useEffect(() => {
@@ -109,7 +106,7 @@ function InvestmentsGraphs({selectedEntity}) {
 
 
     return (
-        <div style={{ display:"flex", flexDirection:"row", gap:20 }}>
+        <div className="investments-graphs">
             <InvestmentRoundsBarChart 
                 investmentRounds={investmentRounds} 
                 highlightEntity={highlightEntity}

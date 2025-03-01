@@ -6,6 +6,7 @@ import * as d3 from 'd3';
 import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
 import { numberFormatter } from "../../../../../utils/formatters";
 import "../../../InsightsArea.css";
+import { Typography } from "@mui/material";
 
 function InvestedEntitiesBubbleChart({investedEntities, setHighlightEntity, highlightRound}) {
 
@@ -100,10 +101,12 @@ function InvestedEntitiesBubbleChart({investedEntities, setHighlightEntity, high
                     left={tooltipLeft}
                     style={{ backgroundColor: 'white', padding: '10px', border: '1px solid #ccc', position:"absolute" }}
                 >
-                    <div>
-                        <strong>{tooltipData.name}</strong>
-                        <div>{numberFormatter(tooltipData.totalAmount)} USD</div>
-                    </div>
+                    <Typography align="left">
+                        <b>Entity name:</b> {tooltipData.name}
+                    </Typography>
+                    <Typography align="left">
+                        <b>Amount invested:</b> {numberFormatter(tooltipData.totalAmount)} USD
+                    </Typography>
                 </TooltipWithBounds>
             )}
         </div>

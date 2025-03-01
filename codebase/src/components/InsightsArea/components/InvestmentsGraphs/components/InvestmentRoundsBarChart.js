@@ -8,6 +8,7 @@ import { AxisBottom, AxisLeft } from "@visx/axis";
 import { blueColor, blueLightColor } from "../../../../../constants";
 import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
 import "../../../InsightsArea.css";
+import { Typography } from "@mui/material";
 
 function InvestmentRoundsBarChart({investmentRounds, highlightEntity, highlightedInvestmentRounds, setHighlightRound}) {
 
@@ -157,9 +158,17 @@ function InvestmentRoundsBarChart({investmentRounds, highlightEntity, highlighte
                     style={{ backgroundColor: 'white', padding: '10px', border: '1px solid #ccc', position:"absolute" }}
                 >
                     <div>
-                        <strong>{tooltipData.round}</strong>
-                        <div>{numberFormatter(tooltipData.totalAmount)} USD</div>
-                        {tooltipData.dates.map((date) => <div>{new Date(date).toString()}</div>)}
+                        <Typography align="left">
+                            <b>Investment round:</b> {tooltipData.round}
+                        </Typography>
+                        <Typography align="left">
+                            <b>Total amount:</b> {numberFormatter(tooltipData.totalAmount)} USD
+                        </Typography>
+                        <Typography align="left">
+                            <b>Dates:</b> {tooltipData.dates.map((date) => 
+                                    `${new Date(date).toLocaleString("en-US", { month: "long", year: "numeric" })} `
+                            )}
+                        </Typography>
                     </div>
                 </TooltipWithBounds>
             )}
