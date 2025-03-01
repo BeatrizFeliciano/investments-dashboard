@@ -2,7 +2,8 @@ import { Box, Grid, Typography } from "@mui/material";
 import { blueColor, BOX_SHADOW } from "../../../constants";
 import "../InsightsArea.css";
 
-function SegmentTable({ title, segments, segmentNameGetter }) {
+function SegmentTable({ title, segments }) {
+
     if (segments && segments.length > 0)
         return (
             <Box 
@@ -25,7 +26,7 @@ function SegmentTable({ title, segments, segmentNameGetter }) {
                     align="left"
                 >
                     {segments.map((segment) => (
-                        <div className="area-investment">{segmentNameGetter(segment)}</div>
+                        <div className="area-investment">{segment}</div>
                     ))}
                 </Typography>
             </Box>

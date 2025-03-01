@@ -9,8 +9,8 @@ import SegmentTable from "./components/SegmentTable";
 
 
 function InsightsArea({ selectedEntity }) {  
-    const marketSegments = useMemo(() => getEntityMarketSegments(selectedEntity), [selectedEntity]);
-    const solutionSegments = useMemo(() => getEntitySolutionSegments(selectedEntity), [selectedEntity]);      
+    const marketSegments = useMemo(() => new Set(getEntityMarketSegments(selectedEntity).map(getMarketSegmentName)), [selectedEntity]);
+    const solutionSegments = useMemo(() => new Set(getEntitySolutionSegments(selectedEntity).map(getSolutionSegmentName)), [selectedEntity]);
     
     return (
         <div className="insights-area-wrapper">
@@ -29,8 +29,8 @@ function InsightsArea({ selectedEntity }) {
                     </div>
                 </div>
                 <div className="investment-areas-wrapper">
-                    <SegmentTable title="Market Segments" segments={marketSegments} segmentNameGetter={getMarketSegmentName}/>
-                    <SegmentTable title="Solution Segments" segments={solutionSegments} segmentNameGetter={getSolutionSegmentName}/>
+                    <SegmentTable title="Market Segments" segments={[...marketSegments]}/>
+                    <SegmentTable title="Solution Segments" segments={[...solutionSegments]}/>
                 </div>
             </div>
             <InvestmentsGraphs selectedEntity={selectedEntity}/>

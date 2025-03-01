@@ -21,8 +21,6 @@ function InvestedEntitiesBubbleChart({investedEntities}) {
                     Math.max(...Object.keys(investedEntities).map(key => investedEntities[key].totalAmount)),
                 ])
                 .range([10, width/6]); // Min and Max bubble radius
-
-                console.log(investedEntities);
             
                 // Create the nodes with radius
                 const initialNodes = Object.keys(investedEntities).map(key => ({
