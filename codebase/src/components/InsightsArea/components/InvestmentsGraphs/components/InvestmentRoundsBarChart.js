@@ -1,8 +1,6 @@
 import { ParentSize } from "@visx/responsive";
-import { getEntityInvestmentsList, getInvestmentAmount, getInvestmentRound } from "../../../../../utils/getters";
 import { numberFormatter } from "../../../../../utils/formatters";
 import { scaleBand, scaleLinear } from "@visx/scale";
-import { useMemo } from "react";
 import { Group } from "@visx/group";
 import { GridRows } from "@visx/grid";
 import { Bar } from "@visx/shape";
@@ -11,41 +9,21 @@ import { blueColor } from "../../../../../constants";
 import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
 import "../../../InsightsArea.css";
 
-function InvestmentRoundsBarChart({selectedEntity}) {
+function InvestmentRoundsBarChart({investmentRounds}) {
 
     const { showTooltip, hideTooltip, tooltipData, tooltipLeft, tooltipTop, tooltipOpen } = useTooltip();
-    const investmentsList = useMemo(() => getEntityInvestmentsList(selectedEntity), [selectedEntity]);
-    const investmentRounds = {};
 
     const marginBottom = 40;
     const marginTop = 10;
     const marginLeft = 50;
-
-    investmentsList.forEach((investment) => {
-        const currentInvestment = investmentRounds[getInvestmentRound(investment)];
-
-        if (currentInvestment) {
-            investmentRounds[getInvestmentRound(investment)] = {
-                totalAmount: currentInvestment.totalAmount + getInvestmentAmount(investment),
-                investments: [...currentInvestment.investments, investment],
-            };
-
-        }
-        else {
-            investmentRounds[getInvestmentRound(investment)] = {
-                totalAmount: getInvestmentAmount(investment),
-                investments: [investment],
-            };
-        }
-    });
 
     const maxAmount = 
         Math.max(...Object.keys(investmentRounds).map(
             (investmentKey) => investmentRounds[investmentKey].totalAmount)); 
 
     return (
-        <div style={{width: "100%", height: "100%"}}>
-            <ParentSize style={{width: "50%", height: 500}}>
+        <div style={{width: "50%", height: "100%"}}>
+            <ParentSize style={{width: "100%", height: 500}}>
                 {({ width, height }) => {
                     const xScale = scaleBand(
                         {
