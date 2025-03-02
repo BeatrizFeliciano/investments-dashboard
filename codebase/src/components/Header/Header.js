@@ -27,7 +27,7 @@ function Header({ data, setSelectedEntity }) {
                 groupBy={(entity) => getEntityType(entity)}
                 size="small"
                 sx={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Select entity"/>} 
+                renderInput={(params) => <TextField {...params} label="Select investor"/>} 
                 onChange={handleChange}
                 isOptionEqualToValue={(option, value) => getEntityName(option) === getEntityName(value)} // Ensures unique selection
             />
