@@ -123,3 +123,11 @@
     box-sizing: border-box;
     gap: 10px;
 }
+
+.tooltip {
+    background-color: 'white';
+    padding: 10px; 
+    position: absolute;
+    border-radius: 5px;
+    color: #3C3E66 !important;
+}

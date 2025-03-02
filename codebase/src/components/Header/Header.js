@@ -26,7 +26,7 @@ function Header({ data, setSelectedEntity }) {
                 getOptionLabel={(option) => option.name}
                 size="small"
                 sx={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Entity name"/>} 
+                renderInput={(params) => <TextField {...params} label="Select entity"/>} 
                 onChange={handleChange}
                 isOptionEqualToValue={(option, value) => getEntityName(option) === getEntityName(value)} // Ensures unique selection
             />

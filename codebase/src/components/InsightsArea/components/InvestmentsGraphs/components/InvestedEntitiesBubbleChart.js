@@ -5,8 +5,9 @@ import { blueColor, blueLightColor, graphDimensions } from "../../../../../const
 import * as d3 from 'd3';
 import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
 import { numberFormatter } from "../../../../../utils/formatters";
-import "../../../InsightsArea.css";
 import { Typography } from "@mui/material";
+import Text from "@visx/text/lib/Text";
+import "../../../InsightsArea.css";
 
 function InvestedEntitiesBubbleChart({investedEntities, setHighlightEntity, highlightRound}) {
 
@@ -35,7 +36,7 @@ function InvestedEntitiesBubbleChart({investedEntities, setHighlightEntity, high
                 // Create Force Simulation
                 const simulation = d3.forceSimulation(initialNodes)
                 .force("charge", d3.forceManyBody().strength(0)) // No attraction/repulsion
-                .force("collision", d3.forceCollide().radius(d => d.radius + 2).strength(1))
+                .force("collision", d3.forceCollide().radius(d => d.radius + 4).strength(1))
                 .force("x", d3.forceX(width / 2).strength(0.3)) // Centering force horizontally
                 .force("y", d3.forceY(height / 2).strength(0.3)) // Centering force vertically
                 .stop()
@@ -51,7 +52,9 @@ function InvestedEntitiesBubbleChart({investedEntities, setHighlightEntity, high
                                 cx={d.x}
                                 cy={d.y}
                                 r={d.radius}
-                                fill={highlightRound ? blueLightColor : blueColor}
+                                fill={!highlightRound || d.rounds.has(highlightRound) ? blueLightColor : "white"}
+                                stroke={!highlightRound || d.rounds.has(highlightRound) ? blueColor : blueLightColor}
+                                strokeWidth={2}
                                 onMouseEnter={(e) => {
                                     showTooltip({
                                         tooltipData: { 
@@ -78,16 +81,17 @@ function InvestedEntitiesBubbleChart({investedEntities, setHighlightEntity, high
                                     });
                                 }}
                             />
-                            {/* highlight circles according to hover on bar chart  */}
-                            {highlightRound && d.rounds.has(highlightRound) && (
-                                <Circle
-                                    key={`highlight-${i}`}
-                                    cx={d.x}
-                                    cy={d.y}
-                                    r={d.radius}
-                                    fill={blueColor}
-                                />
-                            )}
+                           <Text 
+                                x={d.x} 
+                                y={d.y} 
+                                textAnchor="middle" 
+                                dy=".3em" 
+                                fontSize={d.radius / 3} 
+                                fill={!highlightRound || d.rounds.has(highlightRound) ? blueColor : blueLightColor}
+                                pointerEvents="none"
+                            >
+                                {d.name}
+                            </Text>
                             
                             </>
                         ))}
@@ -100,7 +104,7 @@ function InvestedEntitiesBubbleChart({investedEntities, setHighlightEntity, high
                 <TooltipWithBounds
                     top={tooltipTop}
                     left={tooltipLeft}
-                    style={{ backgroundColor: 'white', padding: '10px', border: '1px solid #ccc', position:"absolute" }}
+                    className="tooltip"
                 >
                     <Typography align="left">
                         <b>Entity name:</b> {tooltipData.name}

@@ -152,7 +152,7 @@ function InvestmentRoundsBarChart({investmentRounds, highlightEntity, highlighte
                 <TooltipWithBounds
                     top={tooltipTop}
                     left={tooltipLeft}
-                    style={{ backgroundColor: 'white', padding: '10px', border: '1px solid #ccc', position:"absolute" }}
+                    className="tooltip"
                 >
                     <div>
                         <Typography align="left">
