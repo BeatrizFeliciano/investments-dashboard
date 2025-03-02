@@ -98,5 +98,6 @@
 .investments-graphs {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 50px;
+    box-sizing: border-box;
 }

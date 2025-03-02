@@ -1,7 +1,7 @@
 import { ParentSize } from "@visx/responsive";
 import { Group } from "@visx/group";
 import { Circle } from "@visx/shape";
-import { blueColor, blueLightColor } from "../../../../../constants";
+import { blueColor, blueLightColor, graphDimensions } from "../../../../../constants";
 import * as d3 from 'd3';
 import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
 import { numberFormatter } from "../../../../../utils/formatters";
@@ -14,7 +14,8 @@ function InvestedEntitiesBubbleChart({investedEntities, setHighlightEntity, high
 
     return (
         <div style={{ width:"50%", height: "100%" }}>
-            <ParentSize style={{width: "100%", height: 500}}>
+            <Typography variant="h6" align="left">Invested entities</Typography>
+            <ParentSize style={{width: "100%", height: graphDimensions.height}}>
                 {({ width, height }) => {
                 const radiusScale = d3.scaleSqrt()
                     .domain([

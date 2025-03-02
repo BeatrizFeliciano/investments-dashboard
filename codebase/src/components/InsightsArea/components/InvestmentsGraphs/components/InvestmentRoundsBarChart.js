@@ -5,7 +5,7 @@ import { Group } from "@visx/group";
 import { GridRows } from "@visx/grid";
 import { Bar } from "@visx/shape";
 import { AxisBottom, AxisLeft } from "@visx/axis";
-import { blueColor, blueLightColor } from "../../../../../constants";
+import { blueColor, blueLightColor, graphDimensions } from "../../../../../constants";
 import { useTooltip, TooltipWithBounds } from '@visx/tooltip';
 import "../../../InsightsArea.css";
 import { Typography } from "@mui/material";
@@ -14,28 +14,25 @@ function InvestmentRoundsBarChart({investmentRounds, highlightEntity, highlighte
 
     const { showTooltip, hideTooltip, tooltipData, tooltipLeft, tooltipTop, tooltipOpen } = useTooltip();
 
-    const marginBottom = 40;
-    const marginTop = 10;
-    const marginLeft = 50;
-
     const maxAmount = 
         Math.max(...Object.keys(investmentRounds).map(
             (investmentKey) => investmentRounds[investmentKey].totalAmount)); 
 
     return (
         <div style={{width: "50%", height: "100%"}}>
-            <ParentSize style={{width: "100%", height: 500}}>
+            <Typography variant="h6" align="left">Money invested per investment round</Typography>
+            <ParentSize style={{width: "100%", height: graphDimensions.height}}>
                 {({ width, height }) => {
                     const xScale = scaleBand(
                         {
-                            range: [0, width - marginLeft],
+                            range: [0, width - graphDimensions.marginLeft],
                             domain: Object.keys(investmentRounds),
                         }
                     );
                 
                     const yScale = scaleLinear(
                         {
-                            range: [height - marginBottom - marginTop, 0],
+                            range: [height - graphDimensions.marginBottom - graphDimensions.marginTop, 0],
                             domain: [0, maxAmount],
                             nice: true,
                         }
@@ -44,13 +41,13 @@ function InvestmentRoundsBarChart({investmentRounds, highlightEntity, highlighte
                     return (
                         <svg width={width} height={height}>
                             <Group
-                                left={marginLeft}
-                                top={marginTop}
+                                left={graphDimensions.marginLeft}
+                                top={graphDimensions.marginTop}
                             >
                                 <GridRows
                                     scale={yScale}
-                                    width={width - marginLeft}
-                                    height={height - marginBottom - marginTop}
+                                    width={width - graphDimensions.marginLeft}
+                                    height={height - graphDimensions.marginBottom - graphDimensions.marginTop}
                                     stroke="rgba(0,0,0,0.3)"
                                 />
 
@@ -60,9 +57,9 @@ function InvestmentRoundsBarChart({investmentRounds, highlightEntity, highlighte
                                     const dates = [...investmentRounds[investmentRoundKey].investments.map((investment)=>investment.date)];
                                     const barsMargin = xScale.bandwidth() / 5;
                                     const barWidth = xScale.bandwidth() - barsMargin;
-                                    const barHeight = height - marginTop - marginBottom - yScale(totalAmount);
+                                    const barHeight = height - graphDimensions.marginTop - graphDimensions.marginBottom - yScale(totalAmount);
                                     const barX = xScale(round) + barsMargin/2;
-                                    const barY = height - marginBottom - marginTop - barHeight;
+                                    const barY = height - graphDimensions.marginBottom - graphDimensions.marginTop - barHeight;
 
                                     return (
                                         <Bar
@@ -104,9 +101,9 @@ function InvestmentRoundsBarChart({investmentRounds, highlightEntity, highlighte
                                     const totalAmount = highlightedInvestmentRounds[investmentRoundKey].totalAmount;
                                     const barsMargin = xScale.bandwidth() / 5;
                                     const barWidth = xScale.bandwidth() - barsMargin;
-                                    const barHeight = height - marginTop - marginBottom - yScale(totalAmount);
+                                    const barHeight = height - graphDimensions.marginTop - graphDimensions.marginBottom - yScale(totalAmount);
                                     const barX = xScale(round) + barsMargin/2;
-                                    const barY = height - marginBottom - marginTop - barHeight;
+                                    const barY = height - graphDimensions.marginBottom - graphDimensions.marginTop - barHeight;
 
                                     return (
                                         <Bar
@@ -139,7 +136,7 @@ function InvestmentRoundsBarChart({investmentRounds, highlightEntity, highlighte
                                 })}
                                 <AxisBottom
                                     scale={xScale}
-                                    top={height - marginBottom - marginTop}
+                                    top={height - graphDimensions.marginBottom - graphDimensions.marginTop}
                                 />
                                 <AxisLeft
                                     scale={yScale}
