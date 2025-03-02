@@ -1,4 +1,6 @@
 # Investments Dashboard
+To see the developed interface go to the [following link](https://beatrizfeliciano.github.io/investments-dashboard/).
+
 This is a dashboard that displays the investments done by investors. The idea is to showcase the total amount invested, number of investments and analyse the investment rounds in which the investments were made and to which entities.
 
 ![Interface screenshot](./sketches%20and%20mockups/finalInterface.png)
