@@ -1,5 +1,5 @@
-import { Autocomplete, Box, Grid, TextField, Typography } from "@mui/material";
-import { getEntityName } from "../../utils/getters";
+import { Autocomplete, Box, Grid, TextField, Typography, ListSubheader } from "@mui/material";
+import { getEntityName, getEntityType } from "../../utils/getters";
 import "./Header.css";
 import { BOX_SHADOW } from "../../constants";
 
@@ -23,7 +23,8 @@ function Header({ data, setSelectedEntity }) {
             <Autocomplete
                 disablePortal
                 options={data}
-                getOptionLabel={(option) => option.name}
+                getOptionLabel={(entity) => getEntityName(entity)}
+                groupBy={(entity) => getEntityType(entity)}
                 size="small"
                 sx={{ width: 300 }}
                 renderInput={(params) => <TextField {...params} label="Select entity"/>} 
