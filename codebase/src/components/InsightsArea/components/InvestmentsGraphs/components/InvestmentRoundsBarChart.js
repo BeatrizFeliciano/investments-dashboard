@@ -19,9 +19,9 @@ function InvestmentRoundsBarChart({investmentRounds, highlightEntity, highlighte
             (investmentKey) => investmentRounds[investmentKey].totalAmount)); 
 
     return (
-        <div style={{width: "50%", height: "100%"}}>
+        <div className="chart-wrapper">
             <Typography variant="h6" align="left">Money invested per investment round</Typography>
-            <ParentSize style={{width: "100%", height: graphDimensions.height}}>
+            <ParentSize style={{height: graphDimensions.height}}>
                 {({ width, height }) => {
                     const xScale = scaleBand(
                         {

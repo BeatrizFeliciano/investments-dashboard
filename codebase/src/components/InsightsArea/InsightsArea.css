@@ -5,7 +5,7 @@
     box-sizing: border-box; /* to account for the padding */
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 
 .overview-marketsegments {
@@ -98,6 +98,16 @@
 .investments-graphs {
     display: flex;
     flex-direction: row;
-    gap: 50px;
+    gap: 100px;
     box-sizing: border-box;
+    padding: 15px;
+}
+
+.chart-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    box-sizing: border-box;
+    gap: 10px;
 }

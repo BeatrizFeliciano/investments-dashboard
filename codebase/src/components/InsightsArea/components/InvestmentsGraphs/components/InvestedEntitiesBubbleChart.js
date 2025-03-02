@@ -13,16 +13,16 @@ function InvestedEntitiesBubbleChart({investedEntities, setHighlightEntity, high
     const { showTooltip, hideTooltip, tooltipData, tooltipLeft, tooltipTop, tooltipOpen } = useTooltip();
 
     return (
-        <div style={{ width:"50%", height: "100%" }}>
+        <div className="chart-wrapper">
             <Typography variant="h6" align="left">Invested entities</Typography>
-            <ParentSize style={{width: "100%", height: graphDimensions.height}}>
+            <ParentSize style={{height: graphDimensions.height}}>
                 {({ width, height }) => {
                 const radiusScale = d3.scaleSqrt()
                     .domain([
                         0, 
                         Math.max(...Object.keys(investedEntities).map(key => investedEntities[key].totalAmount)),
                     ])
-                .range([1, width/6]); // Min and Max bubble radius
+                .range([1, Math.min(width, height)/3]); // Min and Max bubble radius
             
                 // Create the nodes with radius
                 const initialNodes = Object.keys(investedEntities).map(key => ({
