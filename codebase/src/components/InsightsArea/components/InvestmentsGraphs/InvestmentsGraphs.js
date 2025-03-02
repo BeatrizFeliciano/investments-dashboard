@@ -69,7 +69,7 @@ function InvestmentsGraphs({selectedEntity}) {
                 });
             });
         });
-    }, investmentsList);
+    }, [investmentsList]);
 
     useEffect(() => {
         setHighlightedInvestmentRounds({});
