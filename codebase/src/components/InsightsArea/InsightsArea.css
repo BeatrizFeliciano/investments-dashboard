@@ -112,8 +112,15 @@
 }
 
 .investment-areas-list {
+    display: flex;
+    flex-direction: column;
     padding: 5px;
     padding-left: 10px;
+    max-height: 105px;
+    gap: 5px;
+    overflow: auto;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .investments-graphs {

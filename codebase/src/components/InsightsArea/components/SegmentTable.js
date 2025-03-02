@@ -21,14 +21,11 @@ function SegmentTable({ title, segments }) {
                 >
                     {title}
                 </Typography>
-                <Typography 
-                    className="investment-areas-list"
-                    align="left"
-                >
+                <Box className="investment-areas-list">
                     {segments.map((segment) => (
                         <div className="area-investment">{segment}</div>
                     ))}
-                </Typography>
+                </Box>
             </Box>
         );
 
