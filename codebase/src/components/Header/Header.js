@@ -17,7 +17,7 @@ function Header({ data, setSelectedEntity }) {
             boxShadow={BOX_SHADOW}
             zIndex={1}
         >
-            <Typography variant="body2" component="div">
+            <Typography variant="h7" component="div">
                 Investments Dashboard
             </Typography>
             <Autocomplete
