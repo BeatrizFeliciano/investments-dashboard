@@ -10,14 +10,14 @@ function DemographicInfo({ selectedEntity }) {
         <div className="demographic-info">
             <div className="demographic-info-element">
                 {isEntity(selectedEntity) ? <FaRegBuilding size={25}/> : <IoPersonOutline size={25}/>}
-                <Typography variant="h6" fontWeight="bold">
+                <Typography className="demographic-info-text" variant="h6" fontWeight="bold">
                     {getEntityName(selectedEntity)}
                 </Typography>
             </div>
             {isEntity(selectedEntity) && 
                 <div className="demographic-info-element">
                     <MdOutlineLocationOn size={25}/>
-                    <Typography variant="h6">
+                    <Typography className="demographic-info-text" variant="h6">
                         {getEntityHqCountry(selectedEntity)}
                     </Typography>
                 </div>

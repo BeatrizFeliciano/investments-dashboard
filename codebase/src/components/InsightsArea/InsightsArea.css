@@ -53,6 +53,14 @@
     gap: 5px;
 }
 
+.demographic-info-text {
+    max-width: 450px !important;  
+    overflow: hidden !important;
+    white-space: nowrap !important; 
+    text-overflow: ellipsis !important; 
+    display: block; 
+}
+
 .total-investments-cards {
     display: flex;
     flex-direction: row;
