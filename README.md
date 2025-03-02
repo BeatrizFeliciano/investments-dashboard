@@ -13,5 +13,7 @@ First, duplicate investor "name" fields were considered the same investor and th
 Additionally, only investors with complete "investments" information were considered. Investors with investments without "roundSizeUsd" (amount) were removed from the dataset. This was done since it was considered that investments without amount information did not have enough insights to be showcased in the dashboard.
 Some other inconsistencies were also detected in the dataset. Namely, there are some type person investors with the hqCountry field. Nothing was done regarding this issue, the field is simply ignored in the interface when considering a person investor. There were also some cases where the market segments and/or solution segments list were empty or null. In this case, the interface indicates that the corresponding list is empty.
 
+Operations performed to the dataset and identification of repeated elements were done using Python (check DatasetAnalysis.ipynb).
+
 ## Codebase
 The codebase where the interface can be run is present in the folder /codebase.
