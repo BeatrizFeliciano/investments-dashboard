@@ -16,4 +16,4 @@ Some other inconsistencies were also detected in the dataset. Namely, there are 
 Operations performed to the dataset and identification of repeated elements were done using Python ([check the jupyter notebook](./DatasetAnalysis.ipynb)).
 
 ## Codebase
-The codebase where the interface can be run is present in the [codebase folder](./codebase/).
+The codebase where the interface can be run is present in the [docs folder](./docs/).
