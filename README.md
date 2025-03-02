@@ -5,7 +5,7 @@ This is a dashboard that displays the investments done by investors. The idea is
 
 The interface is composed of four main areas: (1) a header, where the investor to be evaluated is selected; (2) a demographic area, where the name and headquartes (if the investor is a company), as well as the total amount invested and number of investments are represented; (3) two list areas with the market and solution segments; (4) a bar chart where each bar is an invesment round (bars are organized by timestamp) and their height is the amount invested; (5) a bubble chart with the invested entities represented as circles sized according to the amount invested in each of the entities.
 
-While it was not developed due to time constrains, Figma mockups also showcase the existance of a dashboard about the invested entities (how much money was invested in them, how many investments, how those investments were distributed through time, and who invested).
+While it was not developed due to time constrains, Figma mockups also showcase the existance of a dashboard about the invested entities (how much money was invested in them, how many investments, how those investments were distributed through time, and who invested). Sketches and Figma mockups are collected on [this folder](./sketches%20and%20mockups/).
 
 ## Dataset
 There were some slight changes performed to the original dataset.
