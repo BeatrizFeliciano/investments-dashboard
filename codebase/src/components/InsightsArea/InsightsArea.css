@@ -25,9 +25,19 @@
 }
 
 .demographic-info {
-    width: 50%;
+    width: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
+    flex-direction: row; 
+    gap: 20px;
+}
+
+.demographic-info-element {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
 }
 
 .total-investments-cards {
