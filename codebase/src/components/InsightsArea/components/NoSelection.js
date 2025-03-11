@@ -5,10 +5,10 @@ function NoSelection() {
   return (
     <div className='insights-area-wrapper-no-data'>
         <Typography variant='h4' fontWeight="bold">
-            No entity selected
+            No investor selected
         </Typography>
         <Typography>
-            Select an entity on the header to gather informations about investments
+            Select an investor on the header to gather informations about investments
         </Typography>
     </div>
   );
